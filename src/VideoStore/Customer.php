@@ -50,7 +50,7 @@ class Customer {
     $result = 'Rental Record for ' . $this->getName() . PHP_EOL;
     foreach ($rentals as $each) {
 
-      $thisAmount = $this->amountFor($each);
+      $thisAmount = $each->getCharge();
 
       // Add frequent points.
       $frequentRenterPoints++;
@@ -69,16 +69,6 @@ class Customer {
     $result .= 'You earned ' . $frequentRenterPoints . ' frequent renter points';
 
     return $result;
-  }
-
-  /**
-   * Determines amounts for each line.
-   *
-   * @param Rental $aRental
-   * @return float
-   */
-  private function amountFor(Rental $aRental) {
-    return $aRental->getCharge();
   }
 
 }

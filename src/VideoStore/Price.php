@@ -15,4 +15,14 @@ abstract class Price {
    */
   abstract function getCharge(int $daysRented);
 
+  /**
+   * Determines the movie Frequent Renter Points.
+   *
+   * @param int $daysRented
+   * @return int
+   */
+  function getFrequentRenterPoints(int $daysRented) {
+    return 1;
+  }
+
 }

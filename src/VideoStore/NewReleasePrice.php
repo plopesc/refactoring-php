@@ -18,4 +18,11 @@ class NewReleasePrice extends Price {
     return $daysRented * 3;
   }
 
+  /**
+   * @inheritdoc
+   */
+  function getFrequentRenterPoints(int $daysRented) {
+    return ($daysRented > 1) ? 2 : 1;
+  }
+
 }

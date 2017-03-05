@@ -60,6 +60,28 @@ class Customer {
   }
 
   /**
+   * Returns the customer statement in HTML format.
+   *
+   * @return string
+   */
+  public function htmlStatement() {
+    $rentals = $this->rentals;
+
+    $result = '<h1>Rentals for <em>' . $this->getName() . '</em></h1><p>' .PHP_EOL;
+    foreach ($rentals as $each) {
+
+      // Show figures for this rental.
+      $result .= $each->getMovie()->getTitle() . ': ' . $each->getCharge() . '<br />' . PHP_EOL;
+    }
+
+    // Add footer lines.
+    $result .= '<p>You owe <em>' . $this->getTotalCharge() . '</em><p>' . PHP_EOL;
+    $result .= 'On this rental you earned <em>' . $this->getTotalFrequentRenterPoints() . '</em> frequent renter points<p>';
+
+    return $result;
+  }
+
+  /**
    * Returns the client total charge value.
    *
    * @return float

@@ -79,4 +79,20 @@ class Movie {
     return $result;
   }
 
+  /**
+   * Determines the movie Frequent Renter Points.
+   *
+   * @param int $daysRented
+   * @return int
+   */
+  public function getFrequentRenterPoints(int $daysRented) {
+    // Add bonus for a two day new release rental.
+    if (($this->getPriceCode() == Movie::NEW_RELEASE) && $daysRented > 1) {
+      return 2;
+    }
+    else {
+      return 1;
+    }
+  }
+
 }

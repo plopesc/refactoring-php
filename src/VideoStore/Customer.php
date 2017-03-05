@@ -74,32 +74,32 @@ class Customer {
   /**
    * Determines amounts for each line.
    *
-   * @param Rental $each
+   * @param Rental $aRental
    * @return float|int
    */
-  private function amountFor(Rental $each) {
-    $thisAmount = 0;
+  private function amountFor(Rental $aRental) {
+    $result = 0;
 
     // Determine amounts for each line.
-    switch ($each->getMovie()->getPriceCode()) {
+    switch ($aRental->getMovie()->getPriceCode()) {
       case Movie::REGULAR:
-        $thisAmount += 2;
-        if ($each->getDaysRented() > 2) {
-          $thisAmount += ($each->getDaysRented() - 2) * 1.5;
+        $result += 2;
+        if ($aRental->getDaysRented() > 2) {
+          $result += ($aRental->getDaysRented() - 2) * 1.5;
         }
         break;
       case Movie::NEW_RELEASE:
-        $thisAmount = $each->getDaysRented() * 3;
+        $result = $aRental->getDaysRented() * 3;
         break;
       case Movie::CHILDRENS:
-        $thisAmount += 1.5;
-        if ($each->getDaysRented() > 3) {
-          $thisAmount += ($each->getDaysRented() - 3) * 1.5;
-          return $thisAmount;
+        $result += 1.5;
+        if ($aRental->getDaysRented() > 3) {
+          $result += ($aRental->getDaysRented() - 3) * 1.5;
+          return $result;
         }
-        return $thisAmount;
+        return $result;
     }
-    return $thisAmount;
+    return $result;
   }
 
 }

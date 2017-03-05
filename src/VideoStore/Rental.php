@@ -47,7 +47,6 @@ class Rental {
   public function getCharge() {
     $result = 0;
 
-    // Determine amounts for each line.
     switch ($this->getMovie()->getPriceCode()) {
       case Movie::REGULAR:
         $result += 2;
@@ -67,6 +66,21 @@ class Rental {
         return $result;
     }
     return $result;
+  }
+
+  /**
+   * Determines the rental Frequent Renter Points.
+   *
+   * @return int
+   */
+  public function getFrequentRenterPoints() {
+    // Add bonus for a two day new release rental.
+    if (($this->getMovie()->getPriceCode() == Movie::NEW_RELEASE) && $this->getDaysRented() > 1) {
+      return 2;
+    }
+    else {
+      return 1;
+    }
   }
 
 }

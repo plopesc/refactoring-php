@@ -50,8 +50,6 @@ class Customer {
     $result = 'Rental Record for ' . $this->getName() . PHP_EOL;
     foreach ($rentals as $each) {
 
-      $thisAmount = $each->getCharge();
-
       // Add frequent points.
       $frequentRenterPoints++;
       // Add bonus for a two day new release rental.
@@ -60,8 +58,8 @@ class Customer {
       }
 
       // Show figures for this rental.
-      $result .= "\t" . $each->getMovie()->getTitle() . "\t" . $thisAmount . PHP_EOL;
-      $totalAmount += $thisAmount;
+      $result .= "\t" . $each->getMovie()->getTitle() . "\t" . $each->getCharge() . PHP_EOL;
+      $totalAmount += $each->getCharge();
     }
 
     // Add footer lines.

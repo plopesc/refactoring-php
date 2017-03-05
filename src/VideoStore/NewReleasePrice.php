@@ -10,4 +10,12 @@ class NewReleasePrice extends Price {
   function getPriceCode() {
     return Movie::NEW_RELEASE;
   }
+
+  /**
+   * @inheritdoc
+   */
+  function getCharge(int $daysRented) {
+    return $daysRented * 3;
+  }
+
 }

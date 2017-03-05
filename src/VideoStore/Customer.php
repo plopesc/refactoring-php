@@ -43,14 +43,10 @@ class Customer {
    * @return string
    */
   public function statement() {
-    $frequentRenterPoints = 0;
     $rentals = $this->rentals;
 
     $result = 'Rental Record for ' . $this->getName() . PHP_EOL;
     foreach ($rentals as $each) {
-
-      // Add frequent points.
-      $frequentRenterPoints += $each->getFrequentRenterPoints();
 
       // Show figures for this rental.
       $result .= "\t" . $each->getMovie()->getTitle() . "\t" . $each->getCharge() . PHP_EOL;
@@ -58,7 +54,7 @@ class Customer {
 
     // Add footer lines.
     $result .= 'Amount owed is ' . $this->getTotalCharge() . PHP_EOL;
-    $result .= 'You earned ' . $frequentRenterPoints . ' frequent renter points';
+    $result .= 'You earned ' . $this->getTotalFrequentRenterPoints() . ' frequent renter points';
 
     return $result;
   }
@@ -74,6 +70,22 @@ class Customer {
 
     foreach ($rentals as $each) {
       $result += $each->getCharge();
+    }
+
+    return $result;
+  }
+
+  /**
+   * Returns the client total frequent points.
+   *
+   * @return int
+   */
+  private function getTotalFrequentRenterPoints() {
+    $result = 0;
+    $rentals = $this->rentals;
+
+    foreach ($rentals as $each) {
+      $result += $each->getFrequentRenterPoints();
     }
 
     return $result;

@@ -1,7 +1,7 @@
 Code Examples from Chapter 1
 ======
 
-This branch contains the 1st example where a Vide Store system is refactored step by step.
+This branch contains the 1st example where a Video Store system is refactored step by step.
 Each step is represented by a specific git tag:
 
 1. [original](https://github.com/plopesc/refactoring-php/tree/original): Original to start to iterate
